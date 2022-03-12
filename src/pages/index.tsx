@@ -13,7 +13,7 @@ const Home: NextPage<props> = ({ error, resData }) => {
   return (
     <>
       <Head>
-        <title>Pokemons</title>
+        <title>Pokemon Database</title>
       </Head>
 
       <Wrapper>
