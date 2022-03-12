@@ -57,7 +57,7 @@ const Pokemons: React.FC<props> = ({ data }) => {
 
         {!searchArr?.length && (
           <PokemonGridWrapper>
-            <span>Trending</span>
+            <span>Trending :</span>
             <PokemonGrid>
               {iterate.map((pos, i) => (
                 <Link href={`/pokemon/${data![pos].id}`} key={i} passHref>
@@ -73,20 +73,23 @@ const Pokemons: React.FC<props> = ({ data }) => {
           </PokemonGridWrapper>
         )}
 
-        <PokemonGridWrapper>
-          <PokemonGrid>
-            {searchArr?.map((pokemon, i) => (
-              <Link href={`/pokemon/${pokemon.id}`} key={i} passHref>
-                <a>
-                  <PokemonCard>
-                    <PokemonImg bg={pokemon.image} />
-                    <span>{pokemon.name}</span>
-                  </PokemonCard>
-                </a>
-              </Link>
-            ))}
-          </PokemonGrid>
-        </PokemonGridWrapper>
+        {searchArr?.length !== 0 && (
+          <PokemonGridWrapper>
+            <span>Search results :</span>
+            <PokemonGrid>
+              {searchArr?.map((pokemon, i) => (
+                <Link href={`/pokemon/${pokemon.id}`} key={i} passHref>
+                  <a>
+                    <PokemonCard>
+                      <PokemonImg bg={pokemon.image} />
+                      <span>{pokemon.name}</span>
+                    </PokemonCard>
+                  </a>
+                </Link>
+              ))}
+            </PokemonGrid>
+          </PokemonGridWrapper>
+        )}
       </PokemonWrapper>
     </>
   );
