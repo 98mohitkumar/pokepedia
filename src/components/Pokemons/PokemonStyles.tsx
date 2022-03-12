@@ -153,10 +153,11 @@ export const BigTitle = styled.span`
   margin: 4rem 2rem;
   font-weight: 500;
   z-index: -1;
-  color: grey;
+  color: #80808085;
   font-size: 15rem;
   text-align: right;
   writing-mode: vertical-lr;
+  white-space: nowrap;
 
   @media only ${({ theme }) => theme.breakpoints.lg} {
     display: none;
