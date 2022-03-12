@@ -4,56 +4,42 @@ export const Wrapper = styled.div`
   width: 100%;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1fr;
   place-items: center;
-  padding: 3rem 1rem;
-  gap: 1rem;
+  padding: 4rem 1rem;
 `;
 
-export const FormWrapper = styled.section`
-  width: 100%;
-  max-width: 700px;
-  margin: auto;
-  padding: 1rem;
-`;
-
-export const Form = styled.form`
-  display: grid;
-  grid-template-columns: 1fr;
-  place-items: center;
-  gap: 2rem;
-
-  & > div {
-    width: 100%;
-    max-width: 700px;
-    display: grid;
-    gap: 1rem;
-  }
-`;
-
-export const InputsWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem;
-
-  input {
-    width: 100%;
-    padding: 0.5rem 1rem;
-    padding-right: 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-`;
-
-export const Button = styled.button`
-  width: 250px;
-  height: 65px;
-  margin-top: 1rem;
-  background: gold;
+export const Loader = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: white;
   display: grid;
   place-items: center;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  & .loadingAnimation {
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    transform: scaleX(0) translateZ(0);
+    animation: loader 1.5s cubic-bezier(0.85, 0.01, 0.4, 1) forwards;
+    @keyframes loader {
+      0% {
+        transform-origin: left;
+        transform: scaleX(0) translateZ(0);
+      }
+      40% {
+        transform-origin: left;
+        transform: scaleX(1) translateZ(0);
+      }
+      60% {
+        transform-origin: right;
+        transform: scaleX(1) translateZ(0);
+      }
+      100% {
+        transform-origin: right;
+        transform: scaleX(0) translateZ(0);
+      }
+    }
+  }
 `;

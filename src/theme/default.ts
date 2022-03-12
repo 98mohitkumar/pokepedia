@@ -1,7 +1,7 @@
 export default {
   // Temp fonts
   fonts: {
-    main: "Inter, sans-serif",
+    main: "DM Sans, sans-serif",
   },
   // Colors for layout
   colors: {

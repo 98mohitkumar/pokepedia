@@ -45,32 +45,29 @@ class MyDocument extends Document {
             crossOrigin="true"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter&display=swap"
+            href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
 
-          <meta name="keywords" content="Age calculator"></meta>
-          <meta property="og:title" content="How old am i ?"></meta>
-          <meta
-            name="description"
-            content="How old am i ? is an age calculator with realtime run-up."
-          />
+          <meta name="keywords" content="Pokemon Wikipedia, pokemon"></meta>
+          <meta property="og:title" content="Pokemon Database"></meta>
+          <meta name="description" content="TPDB - The Pokemon Database" />
 
           <meta
             property="og:description"
-            content="How old am i ? is an age calculator with realtime run-up."
+            content="TPDB - The Pokemon Database"
           />
 
-          <meta property="og:image" content="https://i.imgur.com/KKqEaln.jpg" />
+          <meta property="og:image" content="https://i.imgur.com/mvOzIAR.jpg" />
           <meta property="twitter:card" content="summary_large_image" />
-          <meta property="twitter:title" content="How old am i ?" />
+          <meta property="twitter:title" content="Pokemon Database" />
           <meta
             property="twitter:description"
-            content="How old am i ? is an age calculator with realtime run-up."
+            content="TPDB - The Pokemon Database"
           />
           <meta
             property="twitter:image"
-            content="https://i.imgur.com/KKqEaln.jpg"
+            content="https://i.imgur.com/mvOzIAR.jpg"
           />
         </Head>
 
