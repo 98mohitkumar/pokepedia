@@ -1,7 +1,8 @@
-import { NextPage } from "next";
-import React from "react";
-import PokemonInfo from "../../components/Pokemons/PokemonInfo";
-import { Wrapper } from "../../styles/GlobalComponents";
+import { NextPage } from 'next';
+import Head from 'next/head';
+import React from 'react';
+import PokemonInfo from '../../components/Pokemons/PokemonInfo';
+import { Wrapper } from '../../styles/GlobalComponents';
 
 type AppProps = {
   data?: { name: string; type: string[]; stats: any[]; image: string };
@@ -15,7 +16,13 @@ const Pokemon: NextPage<AppProps> = ({ data, error }) => {
         {error ? (
           <h1>Data doesn&apos;t exist.</h1>
         ) : (
-          <PokemonInfo data={data} />
+          <>
+            <Head>
+              <title>{data?.name}</title>
+            </Head>
+
+            <PokemonInfo data={data} />
+          </>
         )}
       </Wrapper>
     </>
@@ -40,7 +47,7 @@ Pokemon.getInitialProps = async (ctx) => {
       const data = await res.json();
       return {
         data,
-        error,
+        error
       };
     }
   } catch {
