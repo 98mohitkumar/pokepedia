@@ -5,7 +5,6 @@ export const PokemonWrapper = styled.div`
   height: auto;
   padding: 1rem;
   max-width: 600px;
-  margin: auto;
 `;
 
 export const HeadTitle = styled.h1`
@@ -55,8 +54,7 @@ export const PokemonCard = styled.div`
   height: auto;
   padding: 1rem;
   background-color: white;
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   border-radius: 12px;
   overflow: hidden;
 `;
@@ -116,7 +114,7 @@ export const Owrapper = styled.div`
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1.25fr;
-  place-items: center;
+  place-items: start;
   gap: 2rem;
 
   @media only ${({ theme }) => theme.breakpoints.sm} {
@@ -126,6 +124,7 @@ export const Owrapper = styled.div`
 
 export const PokemonInfoBg = styled.div<{ bg: string }>`
   width: 100%;
+  max-width: 250px;
   height: 250px;
   background: grey;
   background: ${({ bg }) =>
@@ -136,7 +135,7 @@ export const InfoWrapper = styled.div`
   width: 100%;
   height: auto;
   align-self: flex-start;
-  padding: 1rem;
+  padding: 0rem 1rem;
 
   h1 {
     margin: 0 0 0.5rem 0;
@@ -172,7 +171,7 @@ export const Cover = styled.div`
   position: fixed;
   z-index: 800;
   transform: translateY(0);
-  animation: reveal 1s 1.3s cubic-bezier(0.85, 0.01, 0.4, 1) forwards;
+  animation: reveal 1s cubic-bezier(0.85, 0.01, 0.4, 1) forwards;
 
   @keyframes reveal {
     to {
@@ -192,7 +191,15 @@ export const StatsWrapper = styled.div`
     margin-bottom: 1rem;
   }
 
-  .stat {
+  .key {
+    color: #808080d6;
+  }
+
+  .value {
+    font-weight: 500;
+  }
+
+  .stat:not(:last-child) {
     margin-bottom: 1rem;
   }
 `;

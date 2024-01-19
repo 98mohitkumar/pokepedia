@@ -1,6 +1,6 @@
 {
-  "name": "next-ts",
-  "version": "0.1.0",
+  "name": "pokepedia",
+  "version": "1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,17 +10,18 @@
   },
   "dependencies": {
     "@types/styled-components": "^5.1.23",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
+    "next": "12.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "styled-components": "^5.3.3",
     "styled-normalize": "^8.0.7"
   },
   "devDependencies": {
-    "@types/node": "17.0.21",
-    "@types/react": "17.0.39",
-    "eslint": "8.10.0",
-    "eslint-config-next": "12.1.0",
-    "typescript": "4.6.2"
+    "@types/node": "20.11.5",
+    "@types/react": "18.2.48",
+    "@types/react-dom": "18.2.18",
+    "eslint": "8.56.0",
+    "eslint-config-next": "14.1.0",
+    "typescript": "5.3.3"
   }
 }

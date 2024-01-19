@@ -1,11 +1,11 @@
-import { NextPage } from 'next';
-import Head from 'next/head';
-import React from 'react';
-import PokemonInfo from '../../components/Pokemons/PokemonInfo';
-import { Wrapper } from '../../styles/GlobalComponents';
+import { NextPage } from "next";
+import Head from "next/head";
+import React, { Fragment } from "react";
+import PokemonInfo from "../../components/Pokemons/PokemonInfo";
+import { Wrapper } from "../../styles/GlobalComponents";
 
 type AppProps = {
-  data?: { name: string; type: string[]; stats: any[]; image: string };
+  data: { name: string; type: string[]; stats: any[]; image: string } | null;
   error: boolean;
 };
 
@@ -16,13 +16,13 @@ const Pokemon: NextPage<AppProps> = ({ data, error }) => {
         {error ? (
           <h1>Data doesn&apos;t exist.</h1>
         ) : (
-          <>
+          <Fragment>
             <Head>
-              <title>{data?.name}</title>
+              <title>{data?.name} - Pokemon Database</title>
             </Head>
 
-            <PokemonInfo data={data} />
-          </>
+            {data ? <PokemonInfo data={data} /> : null}
+          </Fragment>
         )}
       </Wrapper>
     </>
@@ -42,7 +42,7 @@ Pokemon.getInitialProps = async (ctx) => {
     const error = res.ok ? false : true;
 
     if (error) {
-      throw new Error();
+      throw new Error("cannot fetch data");
     } else {
       const data = await res.json();
       return {
@@ -51,6 +51,6 @@ Pokemon.getInitialProps = async (ctx) => {
       };
     }
   } catch {
-    return { error: true };
+    return { error: true, data: null };
   }
 };

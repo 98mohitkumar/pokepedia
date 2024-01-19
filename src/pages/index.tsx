@@ -1,26 +1,15 @@
 import type { NextPage } from "next";
-import Head from "next/head";
 import React from "react";
 import Pokemons from "../components/Pokemons/Pokemons";
 import { Wrapper } from "../styles/GlobalComponents";
 
-type props = {
+export type HomePageProps = {
   error: boolean;
-  resData?: [];
+  data: { id: number; image: string; name: string }[] | [];
 };
 
-const Home: NextPage<props> = ({ error, resData }) => {
-  return (
-    <>
-      <Head>
-        <title>Pokemon Database</title>
-      </Head>
-
-      <Wrapper>
-        {error ? <h1>Something went wrong...</h1> : <Pokemons data={resData} />}
-      </Wrapper>
-    </>
-  );
+const Home: NextPage<HomePageProps> = ({ error, data }) => {
+  return <Wrapper>{error ? <h1>Something went wrong...</h1> : <Pokemons data={data} />}</Wrapper>;
 };
 
 export default Home;
@@ -39,10 +28,10 @@ Home.getInitialProps = async () => {
       const resData = await response.json();
       return {
         error,
-        resData,
+        data: resData
       };
     }
   } catch {
-    return { error: true };
+    return { error: true, data: [] };
   }
 };

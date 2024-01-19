@@ -1,22 +1,20 @@
 import { createGlobalStyle } from "styled-components";
-
 import { normalize } from "styled-normalize";
-
-import { ThemeType } from "../pages/_app";
+import { ThemeType } from "./theme";
 
 const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 
-${normalize}
+  ${normalize}
 
-* {
+  * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
 
   ::-webkit-scrollbar {
- display: none;
-}
+    display: none;
+  }
 
   html {
     @media screen and (hover: none) and (pointer: coarse) {

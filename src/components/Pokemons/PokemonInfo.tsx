@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Iwrapper,
   Owrapper,
@@ -8,18 +8,18 @@ import {
   InfoWrapper,
   BigTitle,
   Cover,
-  StatsWrapper,
+  StatsWrapper
 } from "./PokemonStyles";
 
-type props = {
-  data?: { name: string; type: string[]; stats: any[]; image: string };
+type PokemonInfoProps = {
+  data: { name: string; type: string[]; stats: any[]; image: string };
 };
 
-const PokemonInfo: React.FC<props> = ({ data }) => {
+const PokemonInfo: React.FC<PokemonInfoProps> = ({ data }) => {
   return (
     <>
       <PokemonInfoWrapper>
-        <Link href="/" passHref>
+        <Link href='/' passHref>
           <a>
             <p>Back to home</p>
           </a>
@@ -28,16 +28,16 @@ const PokemonInfo: React.FC<props> = ({ data }) => {
         <Cover />
         <Iwrapper>
           <Owrapper>
-            <PokemonInfoBg bg={data!.image} />
+            <PokemonInfoBg bg={data.image} />
             <InfoWrapper>
               <h1>{data?.name}</h1>
-              <span className="type">{data?.type.join(", ")}</span>
+              <span className='type'>{data?.type.join(", ")}</span>
               <StatsWrapper>
-                <span className="statsHead">Stats</span>
+                <span className='statsHead'>Stats</span>
                 {data?.stats.map((stat, i) => (
-                  <div key={i} className="stat">
-                    <span>{stat.name} : </span>
-                    <span>{stat.value}</span>
+                  <div key={i} className='stat'>
+                    <span className='key'>{stat.name} : </span>
+                    <span className='value'>{stat.value}</span>
                   </div>
                 ))}
               </StatsWrapper>

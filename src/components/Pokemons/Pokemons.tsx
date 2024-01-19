@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import {
   HeadTitle,
   PokemonCard,
@@ -8,27 +8,23 @@ import {
   PokemonImg,
   PokemonWrapper,
   Search,
-  Cover,
+  Cover
 } from "./PokemonStyles";
+import { HomePageProps } from "../../pages";
 
-type props = {
-  data?: any[];
+type PokemonsProps = {
+  data: HomePageProps["data"];
 };
 
-const Pokemons: React.FC<props> = ({ data }) => {
-  const [iterate, setIterate] = useState<number[]>([]);
-
-  const [searchArr, setSearchArr] = useState<any[] | undefined>([]);
-
+const Pokemons: React.FC<PokemonsProps> = ({ data }) => {
+  const [searchArr, setSearchArr] = useState<any[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const inputHandler = () => {
     const searchQuery = inputRef.current?.value.toLowerCase();
 
-    if (searchQuery !== "" && searchQuery?.trim() !== "") {
-      const searchRes = data?.filter((pokemon) =>
-        pokemon.name.toLowerCase().includes(searchQuery)
-      );
+    if (searchQuery && searchQuery?.trim() !== "") {
+      const searchRes = data?.filter((pokemon) => pokemon.name.toLowerCase().includes(searchQuery));
       searchRes?.splice(15);
       setSearchArr(searchRes);
     } else {
@@ -36,44 +32,21 @@ const Pokemons: React.FC<props> = ({ data }) => {
     }
   };
 
-  useEffect(() => {
-    for (let i = 0; i < 6; i++) {
-      let random = Math.floor(Math.random() * data!.length);
-      setIterate((prev: number[]) => [...prev, random]);
-    }
-  }, []);
+  const iterate = [...Array(6)].map(() => Math.floor(Math.random() * data?.length));
 
   return (
-    <>
+    <Fragment>
       <PokemonWrapper>
         <Cover />
         <HeadTitle>Pokemon Database</HeadTitle>
         <Search
-          type="text"
-          placeholder="Click here to search"
+          type='text'
+          placeholder='Click here to search'
           ref={inputRef}
           onChange={inputHandler}
         />
 
-        {!searchArr?.length && (
-          <PokemonGridWrapper>
-            <span>Trending :</span>
-            <PokemonGrid>
-              {iterate.map((pos, i) => (
-                <Link href={`/pokemon/${data![pos].id}`} key={i} passHref>
-                  <a>
-                    <PokemonCard>
-                      <PokemonImg bg={data![pos].image} />
-                      <span>{data![pos].name}</span>
-                    </PokemonCard>
-                  </a>
-                </Link>
-              ))}
-            </PokemonGrid>
-          </PokemonGridWrapper>
-        )}
-
-        {searchArr?.length !== 0 && (
+        {searchArr?.length > 0 ? (
           <PokemonGridWrapper>
             <span>Search results :</span>
             <PokemonGrid>
@@ -89,9 +62,25 @@ const Pokemons: React.FC<props> = ({ data }) => {
               ))}
             </PokemonGrid>
           </PokemonGridWrapper>
+        ) : (
+          <PokemonGridWrapper>
+            <span>Trending :</span>
+            <PokemonGrid>
+              {iterate.map((pos, i) => (
+                <Link href={`/pokemon/${data[pos].id}`} key={i} passHref>
+                  <a>
+                    <PokemonCard>
+                      <PokemonImg bg={data[pos].image} />
+                      <span>{data[pos].name}</span>
+                    </PokemonCard>
+                  </a>
+                </Link>
+              ))}
+            </PokemonGrid>
+          </PokemonGridWrapper>
         )}
       </PokemonWrapper>
-    </>
+    </Fragment>
   );
 };
 

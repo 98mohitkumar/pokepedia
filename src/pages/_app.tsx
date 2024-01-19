@@ -1,36 +1,35 @@
-import type { AppProps } from "next/app";
-import { useEffect, useLayoutEffect, useState } from "react";
-import { ThemeProvider } from "styled-components";
-import GlobalStyles from "../styles/global";
+import { Fragment, useEffect, useState } from "react";
 import { Loader } from "../styles/GlobalComponents";
-import theme from "../theme/default";
+import { AppProps } from "next/app";
+import Theme from "../styles/theme";
+import Head from "next/head";
 
-export type ThemeType = typeof theme;
-
-function MyApp({ Component, pageProps, router }: AppProps) {
-  const [loading, setIsloading] = useState(false);
-
-  useLayoutEffect(() => {
-    setIsloading(true);
-  }, [router.asPath]);
+export default function MyApp({ Component, pageProps, router }: AppProps) {
+  const [loading, setIsloading] = useState(true);
 
   useEffect(() => {
+    setIsloading(true);
+
     setTimeout(() => {
       setIsloading(false);
-    }, 1500);
+    }, 1750);
   }, [router.asPath]);
 
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      {loading && (
-        <Loader>
-          <div className="loadingAnimation"></div>
-        </Loader>
-      )}
-      <Component {...pageProps} />
-    </ThemeProvider>
+    <Fragment>
+      <Head>
+        <title>Pokemon Database</title>
+      </Head>
+
+      <Theme>
+        {loading ? (
+          <Loader>
+            <div className='loadingAnimation' />
+          </Loader>
+        ) : (
+          <Component {...pageProps} />
+        )}
+      </Theme>
+    </Fragment>
   );
 }
-
-export default MyApp;
